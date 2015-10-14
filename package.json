@@ -1,17 +1,21 @@
 {
-  "name": "closest-package",
-  "version": "1.0.0",
-  "description": "Find the closest package.json file meeting specific criteria",
+  "name": "findup-package-json",
+  "version": "2.0.0",
+  "description": "Find the closest package.json file meeting specific criteria by searching upwards from a given directory until hitting root",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "node test | tap-spec"
   },
-  "author": {
+  "contributors": [{
     "name": "Hugh Kennedy",
     "email": "hughskennedy@gmail.com",
     "url": "http://hughsk.io/"
-  },
+  },{
+    "name": "Alexander Praetorius",
+    "email": "dev@serapath.de",
+    "url": "http://serapath.de"
+  }],
   "dependencies": {},
   "devDependencies": {
     "deep-equal": "^0.2.1",
@@ -20,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hughsk/closest-package.git"
+    "url": "https://github.com/serapath/findup-package-json.git"
   },
   "keywords": [
     "package",
@@ -30,8 +34,8 @@
     "up",
     "closest"
   ],
-  "homepage": "https://github.com/hughsk/closest-package",
+  "homepage": "https://github.com/serapath/findup-package-json",
   "bugs": {
-    "url": "https://github.com/hughsk/closest-package/issues"
+    "url": "https://github.com/serapath/findup-package-json/issues"
   }
 }

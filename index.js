@@ -23,7 +23,9 @@ function closest(dirname, filter, found) {
 
       read(pkgfile, function(err, pkg) {
         if (err) return found(err)
-        if (filter(pkg, pkgfile)) return found(null, pkgfile)
+        if (filter(pkg, pkgfile)) {
+          return found(null, { pkgfile: pkgfile, pkg: pkg })
+        }
         next()
       })
     })
@@ -43,7 +45,9 @@ function closestSync(dirname, filter) {
     var pkgfile = path.join(dirname, 'package.json')
     if (!fs.existsSync(pkgfile)) continue
     var pkg = readSync(pkgfile)
-    if (filter(pkg, pkgfile)) return pkgfile
+    if (filter(pkg, pkgfile)) {
+      return { pkgfile: pkgfile, pkg: pkg }
+    }
   } while (!isRoot(
     dirname = path.join(dirname, '..')
   ))

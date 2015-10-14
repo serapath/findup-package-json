@@ -13,7 +13,7 @@ test('async: always true', function(t) {
     return true
   }, function(err, result) {
     if (err) return t.fail(err)
-    t.ok(result === local, 'found local package.json')
+    t.ok(result.pkgfile === local, 'found local package.json')
   })
 })
 
@@ -22,7 +22,7 @@ test('sync: always true', function(t) {
     return true
   })
 
-  t.ok(result === local, 'found local package.json')
+  t.ok(result.pkgfile === local, 'found local package.json')
   t.end()
 })
 
@@ -53,7 +53,7 @@ test('async: three levels down', function(t) {
     , localDir
     , function(err, result) {
       if (err) return t.fail(err)
-      t.equal(3, require(result).level, '"level": 3')
+      t.equal(3, require(result.pkgfile).level, '"level": 3')
     })
 })
 
@@ -61,7 +61,7 @@ test('async: three levels down', function(t) {
   var result = closest.sync(path.dirname(lowest), localDir)
 
   t.ok(result, 'should find package.json')
-  t.equal(3, require(result).level, '"level": 3')
+  t.equal(3, require(result.pkgfile).level, '"level": 3')
   t.end()
 })
 
@@ -72,7 +72,7 @@ test('async: level === 1', function(t) {
     return localDir(pkg, pkgfile) && pkg.level === 1
   }, function(err, result) {
     if (err) return t.fail(err)
-    t.equal(1, require(result).level, '"level": 1')
+    t.equal(1, require(result.pkgfile).level, '"level": 1')
   })
 })
 
@@ -81,8 +81,8 @@ test('sync: level === 1', function(t) {
     return localDir(pkg, pkgfile) && pkg.level === 1
   })
 
-  t.ok(result, 'should find package.json')
-  t.equal(1, require(result).level, '"level": 1')
+  t.ok(result.pkgfile, 'should find package.json')
+  t.equal(1, require(result.pkgfile).level, '"level": 1')
   t.end()
 })
 

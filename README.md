@@ -1,22 +1,22 @@
-# closest-package [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+# findup-package-json [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-Find the closest package.json file meeting specific criteria by searching
-upwards from a given directory until hitting root.
+Find the closest package.json file meeting specific criteria by searching upwards from a given directory until hitting root.
 
 ## Usage
 
-[![NPM](https://nodei.co/npm/closest-package.png)](https://nodei.co/npm/closest-package/)
+[![NPM](https://nodei.co/npm/findup-package-json.png)](https://nodei.co/npm/findup-package-json/)
 
-### `closest(dir, [filter], found(err, file))`
+### `findup(dir, [filter], found(err, file))`
 
-Given a starting directory `dir`, look up through every directory to see if
-it contains a `package.json` file matching the `filter` function, for example:
+Given a starting directory `dir`, look up through every directory to see if it contains a `package.json` file matching the `filter` function, for example:
 
 ``` javascript
-closest(__dirname, function(json, filename) {
+var findup = require('findup-package-json')
+findup(__dirname, function(json, filename) {
   return json.name === 'async'
-}, function(err, file) {
-  console.log(file)
+}, function(err, result) {
+  console.log(result.pkgfile)
+  console.log(result.pkg)
 })
 ```
 
@@ -25,18 +25,19 @@ Note that `filter` is optional and takes the following arguments:
 * `json`: the parsed `package.json` file.
 * `filename`: the `package.json`'s absolute filename.
 
-### `file = closest.sync(dir, [filter])`
+### `file = findup.sync(dir, [filter])`
 
-Same as the `closest` function, however executed synchronously:
+Same as the `findup` function, however executed synchronously:
 
 ``` javascript
-var result = closest.sync(__dirname, function(json, filename) {
+var result = findup.sync(__dirname, function(json, filename) {
   return json.name === 'async'
 })
 
-console.log(result)
+console.log(result.pkgfile)
+console.log(result.pkg)
 ```
 
 ## License
 
-MIT. See [LICENSE.md](http://github.com/hughsk/closest-package/blob/master/LICENSE.md) for details.
+MIT. See [LICENSE.md](http://github.com/hughsk/findup-package-json/blob/master/LICENSE.md) for details.
