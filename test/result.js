@@ -1,3 +1,5 @@
+// @TODO: fix test-bunde.js and compare output with expectations
+
 (function (err, json) {
   // ... use err and/or json
   console.log(json.pkgfile)

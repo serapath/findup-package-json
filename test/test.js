@@ -96,6 +96,7 @@ test('sync: always true', function(t) {
     }
   })
   // CHECK
+  console.log(result)
   t.ok(result.pkgfile === local, 'found local package.json')
   t.ok(result.pkg['name'] === "findup-package-json", "name: findup-package-json")
   t.ok(result.pkg['scripts.test'] === "node test/test | tap-spec", "scripts.test: node test/test | tap-spec")

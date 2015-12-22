@@ -50,7 +50,7 @@ function ast (filename, source) {
             // CASE: require('findup-package-json').sync({...})
             var expression = x.parent
             var json = getPKG(expression)
-            expression.update(JSON.stringify(json))
+            expression.update(JSON.stringify({ pkg: json.pkg, pkgfile: '/' }))
           } else if (x.parent.type === 'VariableDeclarator') {
             x.parent.parent.update()
           } else if (x.parent.type === 'Property') {
@@ -73,7 +73,7 @@ function ast (filename, source) {
                 var exp = src.match(/found:([\s\S]*)\}[\s]*\)[\s]*$/)[0]
                 exp = exp.replace('found:', '!(')
                 var err = 'null'
-                var pkg = JSON.stringify(json)
+                var pkg = JSON.stringify({ pkg: json.pkg, pkgfile: '/' })
                 exp = exp.replace(/\}[\s]*\)[\s]*$/, ')('+err+','+pkg+')')
                 expression.update(exp)
                 found = true

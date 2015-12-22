@@ -1,6 +1,6 @@
 {
   "name": "findup-package-json",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Find the closest package.json file meeting specific criteria by searching upwards from a given directory until hitting root",
   "main": "index.js",
   "license": "MIT",
@@ -24,7 +24,7 @@
   "dependencies": {
     "callify": "^0.3.0",
     "defined": "^1.0.0",
-    "exemethod": "^1.2.5",
+    "exemethod": "^1.3.0",
     "falafel": "^1.2.0",
     "getval": "^1.0.0",
     "isarray": "0.0.1",
