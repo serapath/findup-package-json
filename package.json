@@ -1,11 +1,13 @@
 {
   "name": "findup-package-json",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Find the closest package.json file meeting specific criteria by searching upwards from a given directory until hitting root",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "node test | tap-spec"
+    "link": "npm link && cd test && npm link findup-package-json && cd ..",
+    "test": "node test/test | tap-spec",
+    "test-bundle": "cd test && browserify -t findup-package-json test-bundle.js | node"
   },
   "contributors": [
     {
@@ -20,11 +22,13 @@
     }
   ],
   "dependencies": {
+    "callify": "^0.3.0",
     "defined": "^1.0.0",
     "exemethod": "^1.2.5",
     "falafel": "^1.2.0",
     "getval": "^1.0.0",
     "isarray": "0.0.1",
+    "static-eval": "^0.2.4",
     "through2": "^2.0.0"
   },
   "devDependencies": {

@@ -104,7 +104,7 @@ require('findup-package-json')({ found: function (err, json) {
   console.log(json.pkg)
 }})
 // or
-var json = require('findup-package-json').sync(...)
+var json = require('findup-package-json').sync(/*...*/)
 console.log(json.pkgfile)
 console.log(json.pkg)
 ```

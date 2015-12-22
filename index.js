@@ -50,7 +50,7 @@ function ast (filename, source) {
             // CASE: require('findup-package-json').sync({...})
             var expression = x.parent
             var json = getPKG(expression)
-            expression.update(JSON.stringify(json.pkg))
+            expression.update(JSON.stringify(json))
           } else if (x.parent.type === 'VariableDeclarator') {
             x.parent.parent.update()
           } else if (x.parent.type === 'Property') {
@@ -73,7 +73,7 @@ function ast (filename, source) {
                 var exp = src.match(/found:([\s\S]*)\}[\s]*\)[\s]*$/)[0]
                 exp = exp.replace('found:', '!(')
                 var err = 'null'
-                var pkg = JSON.stringify(json.pkg)
+                var pkg = JSON.stringify(json)
                 exp = exp.replace(/\}[\s]*\)[\s]*$/, ')('+err+','+pkg+')')
                 expression.update(exp)
                 found = true
@@ -128,6 +128,7 @@ function closest (params) {
   var dirname = args[1]
   var filter  = args[2]
   var found   = defined(getval(params,'found'))
+
   if (typeof found !== 'function') {
     throw new Error('callback "found" needs to be a function')
   }

@@ -1,12 +1,12 @@
 var deep    = require('deep-equal')
 var test    = require('tape')
 var path    = require('path')
-var findup  = require('./')
+var findup  = require('../')
 
-var lowest    = require.resolve('./fixtures/a/b/package.json')
-var local     = require.resolve('./package.json')
-var lowestpkg = require('./fixtures/a/b/package.json')
-var localpkg  = require('./package.json')
+var lowest    = require.resolve('../fixtures/a/b/package.json')
+var local     = require.resolve('../package.json')
+var lowestpkg = require('../fixtures/a/b/package.json')
+var localpkg  = require('../package.json')
 
 function localDir (pkg, pkgfile) {
   var pkgdir = path.dirname(pkgfile).split(path.sep)
@@ -27,7 +27,7 @@ test('async: always true', function(t) {
       // CHECKS
       t.ok(result.pkgfile === local, 'found local package.json')
       t.ok(result.pkg['name'] === "findup-package-json", "name: findup-package-json")
-      t.ok(result.pkg['scripts.test'] === "node test | tap-spec", "scripts.test: node test | tap-spec")
+      t.ok(result.pkg['scripts.test'] === "node test/test | tap-spec", "scripts.test: node test/test | tap-spec")
       for ( key in result.pkg ) {
         if (key !== 'name' && key !== 'scripts.test') {
           t.fail('result contains '+key+' that were not requested')
@@ -98,7 +98,7 @@ test('sync: always true', function(t) {
   // CHECK
   t.ok(result.pkgfile === local, 'found local package.json')
   t.ok(result.pkg['name'] === "findup-package-json", "name: findup-package-json")
-  t.ok(result.pkg['scripts.test'] === "node test | tap-spec", "scripts.test: node test | tap-spec")
+  t.ok(result.pkg['scripts.test'] === "node test/test | tap-spec", "scripts.test: node test/test | tap-spec")
   for ( key in result.pkg ) {
     if (key !== 'name' && key !== 'scripts.test') {
       t.fail('result contains '+key+' that were not requested')
